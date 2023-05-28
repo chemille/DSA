@@ -24,23 +24,27 @@ def two_sum(nums, target):
     # Approach 1 # ENUMERATE function
 
     lookup = {}  
-    for index, num in enumerate(nums):
-        second_num = target - num
+    for index, n in enumerate(nums):
+        second_num = target - n
         if second_num in lookup:
             return[lookup[second_num],index]
-        lookup[nums[index]] = index  
-    return []
+        lookup[n] = index  
+    return 
 
     # Approach # 2 # hash map #
+    # mapping value to index in hashmap
+    
     # lookup = {}
     # for i in range(len(nums)):
     #   second_num = target-nums[i]
     #   if second_num in lookup:
     #     return(lookup[second_num], i)
     #   lookup[nums[i]] = i
+    # return 
     
     
-    # # Both solutions: time O(n) -> n is len of nums list, iterates through list once, performing constant time operations for each element. Space O(n) -> dictionary stores n key-value pairs, resulting in O(n) space. 
+    # # Both solutions: time O(n) -> n is len of nums list, iterates through list once, performing constant time operations for each element. 
+    # ## Space O(n) -> dictionary stores n key-value pairs, resulting in O(n) space. 
         
 print(two_sum([3,4,1], 0)) # []
 print(two_sum([2,7,11,15], 9)) # [0,1]
