@@ -1,4 +1,4 @@
-'''Top K Frequent 
+'''Top K Frequent Elements
 
 Given an integer array nums and an integer k, return the k most frequent elements. 
 You may return the answer in any order.
@@ -24,47 +24,55 @@ Follow up: Your algorithm's time complexity must be better than O(n log n), wher
 '''
 
 def topKFrequent(nums, k):
-
-    d = {}
-    result = []
+    ## First solution ##
+    # d = {}
+    # result = []
     
-    for num in set(nums):
-        d[num] = 0
+    # for num in set(nums):
+    #     d[num] = 0
 
-    for n in nums:
-        if n in d:
-            d[n] += 1
+    # for n in nums:
+    #     if n in d:
+    #         d[n] += 1
 
-    # sort by value in descending order
-    d = dict(sorted(d.items(), key=lambda item: item[1], reverse=True))  
+    # # sort by value in descending order
+    # d = dict(sorted(d.items(), key=lambda item: item[1], reverse=True))  
 
-    # while len(result) < k:
-    for key in d:
-        result.append(key)
-        if len(result) == k:
-            break
+    # # while len(result) < k:
+    # for key in d:
+    #     result.append(key)
+    #     if len(result) == k:
+    #         break
         
-    return result
+    # return result
 
 ## time -> O(n log n)
 ## space -> O(m)
 
-# Step 1: Count the frequency of each element
-#     freq = {}
-#     for num in nums:
-#         if num in freq:
-#             freq[num] += 1
-#         else:
-#             freq[num] = 1
+    ## Another solution with linear time and space O(n)##
+    # bucket sort
     
-#     # Step 2: Sort the elements based on frequency in descending order
-#     sorted_nums = sorted(freq.keys(), key=lambda x: freq[x], reverse=True)
-#     print(sorted_nums)
+    count = {} # hash map
+    freq = [[]for i in range(len(nums) + 1)] # special arr -> same size as input arr
+        ## index will be the freq or the count of elem, and value will be list of values that occurred that many particular number of times 
     
-#     # Step 3: Extract the k most frequent elements
-#     result = sorted_nums[:k]
+    ## iterate through every elem in nums
+    for n in nums:
+        count[n] = 1 + count.get(n, 0) # get count of how many times the elem occurred
+    for n, c in count.items(): 
+        freq[c].append(n) # c will be index, so we want to append n. So n occurs c number of times.
+        
+    res = []
+    ## iterate through freq arr in descending order since we want to start with numbers that occur most frequently
+    for i in range(len(freq)-1, 0, -1): # freq-1 means to the last index, and -1 means descending
+        ## iterate trough every n value at freq[i]
+        for n in freq[i]: # remember everything in i is another sublist
+            res.append(n) # if it's not empty, we want to append n to our result because we want the value that occurs most frequently
+            if len(res) == k: # when length of res reaches k, we want to stop
+                return res
     
-#     return result
+
+
 
 
 print(topKFrequent([1,1,1,2,2,3], k = 2))
