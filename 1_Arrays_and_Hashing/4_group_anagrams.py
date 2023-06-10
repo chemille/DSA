@@ -24,7 +24,27 @@ Constraints:
 strs[i] consists of lowercase English letters.'''
 
 def group_anagrams(strs) -> list:
-    pass
+
+    sorted_words = {}
+
+    for word in strs:
+        word_key = ''.join(sorted(word))
+        if word_key not in sorted_words:
+            sorted_words[word_key] = []
+        if word_key in sorted_words:
+            sorted_words[word_key].append(word) # append the word as a value 
+        
+    return list(sorted_words.values())
+
+# Time complexity -> O(n * k * log(k)), where N is the number of words in the strs list and K is the maximum length of a word in strs.
+    # Sorted fx takes O(n long n) time
+    # Adding items to a dict takes O(1) time on average
+    # Converting sorted_words.values() to a list takes O(n) time
+    
+# Space complexity -> O(n * k), where N is the number of words in strs and K is the maximum length of a word in strs. This is because the sorted_words dictionary can store at most N entries, and each entry can have a word of length K.
+
+# Overall, the time complexity is O(N * K * log(K)) aka polynomial time complexity, and the space complexity is O(n * k).
+
 
 print(group_anagrams(["eat","tea","tan","ate","nat","bat"]))
 print(group_anagrams([""]))
