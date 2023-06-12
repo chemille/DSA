@@ -1,7 +1,7 @@
 ![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
 
-# Name of the project
-> Additional information or tagline
+# Data Structures and Algorithms (DSA) 
+> Inspired by NeetCode's algorithms roadmap for practice 
 
 A brief description of your project, what it is used for and how does life get
 awesome when someone starts to use it.
