@@ -81,7 +81,17 @@ def twoSum(numbers, target):
     # # If no solution found
     return []
 
+    # Time complexity is O(n) / linear, where n is the number of elements in the input list numbers.
+    # This is because the function uses a two-pointer approach to iterate through the list, 
+    # and in each iteration, the left pointer moves from the beginning towards the end, 
+    # and the right pointer moves from the end towards the beginning. 
+    # Since each pointer traverses the list at most once, the time complexity is linear with 
+    # respect to the size of the input list.
 
+    # # Space complexity is O(1) / constant. The function only uses a constant amount of 
+    # additional space to store the left and right pointers, the current sum, and the output 
+    # array. It does not use any additional data structures that grow with the input size, 
+    # so the space complexity remains constant regardless of the input size.
 
 print(twoSum([2,7,11,15], 9)) # [1,2]
 print(twoSum([2,3,4], 6)) # [1,3]
