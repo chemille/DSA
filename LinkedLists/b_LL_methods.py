@@ -17,7 +17,7 @@ class LinkedList:
     # info out of hte LL. Below are severak possible methods our class amy have:
     
     # This method adds a new node with the specific data value to the beginning of LL.
-    def add_first(self, value):
+    def add_to_beginning(self, value):
         new_node = Node(value) # create a new node
         new_node.next = self.head # set the new node's next field
         self.head = new_node # update the LL's head field o point at the new node
@@ -26,7 +26,16 @@ class LinkedList:
         # should always point ot the current (soon to be former) head of the list. 
     
     # Another method that returns the value in the first node in the LL. Returns None if empty.
-    def get_first(self):
+    def get_first_value(self):
         if self.head is None:
             return None
         return self.head.val
+    
+    # Search method
+    def search(self, value): # self refers to entire LL, and value to search will be passed in
+        current = self.head # set current to self.head, which is the first node inthe LL initially
+        while current: # while there are nodes to traverse
+            if current.val == value: # current holds the first node in the list right now
+                return True # if it is the value we passed in, then return True
+            current = current.next #current is reassigned to point to entire next object
+        return False
