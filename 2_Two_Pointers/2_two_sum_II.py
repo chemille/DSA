@@ -70,13 +70,12 @@ def twoSum(numbers, target):
     while left < right: # this ensures that once it meets in the middle, the loop will stop
         current_sum = numbers[left] + numbers[right]
         
-        if current_sum == target:
-            return [left + 1, right + 1]  # Found two indices accounting for starting at 1
-        
-        if current_sum < target:
+        if current_sum > target:
+            right -=1  
+        elif current_sum < target:
             left += 1 
-        else:
-            right -= 1
+        else: # current_sum == target:
+            return [left + 1, right + 1] # remember they're based on 1, so we add 1 to each
     
     # # If no solution found
     return []
