@@ -56,7 +56,8 @@ def isValid(s) -> bool:
     # return open_symbols == []
 
 
-    ### Solution using dictionary, where closing symbol is key and opening symbol is the value ##
+    ### NeetCode solution ##
+    ### Using stack and dict, where closing symbol is key and opening symbol is the value ##
         stack = []
         close_to_open = {
             ")": "(", 
