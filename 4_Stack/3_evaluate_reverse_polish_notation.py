@@ -46,25 +46,35 @@ tokens[i] is either an operator: "+", "-", "*", or "/", or an integer in the ran
 
 def evalRPN(tokens) -> int:
 
-    stack = []
-    for item in tokens:
-        if item == '+':
-            stack.append(stack.pop() + stack.pop())
-        elif item == '*':
-            stack.append(stack.pop() * stack.pop())
-        elif item =='-':
-            first, second = stack.pop(), stack.pop()
-            stack.append(second - first)
-        elif item =='/':
-            first, second = stack.pop(), stack.pop()
-            stack.append(int(second / first))
-        else:
-            stack.append(int(item))
-    return stack[0]
+    # stack = []
+    # for item in tokens:
+    #     if item == '+':
+    #         stack.append(stack.pop() + stack.pop())
+    #     elif item == '*':
+    #         stack.append(stack.pop() * stack.pop())
+    #     elif item =='-':
+    #         first, second = stack.pop(), stack.pop()
+    #         stack.append(second - first)
+    #     elif item =='/':
+    #         first, second = stack.pop(), stack.pop()
+    #         stack.append(int(second / first))
+    #     else:
+    #         stack.append(int(item))
+    # return stack[0]
 
+    ## Time O(n) because going through input string, adding adn removing at once each.
+    ## Space O(n) because we use a stack. 
+    
+##### Another solution ###
+    # while len(tokens) > 1:
+    #     t = tokens.pop(0)
+    #     if t not in '+-*/': tokens.append(t)
+    #     else:
+    #         num1, num2 = tokens.pop(), tokens.pop()
+    #         tokens.append(str(int(eval(''.join([num2,t,num1])))))
+    # return int(tokens[0])
+    
 
-    # Time O(n) because going through input string, adding adn removing at once each.
-    # Space O(n) because we use a stack. 
 
 print(evalRPN(["2","1","+","3","*"])) #9
 print(evalRPN(["4","13","5","/","+"])) #6
