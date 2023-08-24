@@ -66,13 +66,13 @@ def evalRPN(tokens) -> int:
     ## Space O(n) because we use a stack. 
     
 ##### Another solution ###
-    # while len(tokens) > 1:
-    #     t = tokens.pop(0)
-    #     if t not in '+-*/': tokens.append(t)
-    #     else:
-    #         num1, num2 = tokens.pop(), tokens.pop()
-    #         tokens.append(str(int(eval(''.join([num2,t,num1])))))
-    # return int(tokens[0])
+    while len(tokens) > 1:
+        t = tokens.pop(0)
+        if t not in '+-*/': tokens.append(t)
+        else:
+            num1, num2 = tokens.pop(), tokens.pop()
+            tokens.append(str(int(eval(''.join([num2,t,num1])))))
+    return int(tokens[0])
     
 
 
