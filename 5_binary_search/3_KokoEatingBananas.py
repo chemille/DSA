@@ -57,22 +57,40 @@ def minEatingSpeed(piles, h):
     ## Binary search solution with Neetcode ##
     ## Time O(n * log m), Space O(1) ##
 
-    low = 1 
-    high = max(piles) 
-    output = high # this is the max that will work worst case scenario
+    # low = 1 
+    # high = max(piles) 
+    # output = high # this is the max that will work worst case scenario
 
-    while low <= high:
-        mid = (high + low) // 2
-        hours = 0
-        for p in piles:
-            hours += math.ceil(p / mid) ## Rounds down
-        if hours <= h:
-            output = min(mid, output)
-            high = mid - 1
-        else: 
-            low = mid + 1
+    # while low <= high:
+    #     mid = (high + low) // 2
+    #     hours = 0
+    #     for p in piles:
+    #         hours += math.ceil(p / mid) ## Rounds up
+    #     if hours <= h:
+    #         output = min(mid, output)
+    #         high = mid - 1
+    #     else: 
+    #         low = mid + 1
         
-    return output
+    # return output
+
+    ## Another solution with binary search not importing math ##
+    l, r = 1, max(piles)
+    
+    while l <= r:
+        mid = (l + r) // 2
+        ## Uses list comprehension to calculate the total number of hours Koko needs to eat all the bananas at a given eating speed mid.
+        total_hours = sum((pile + mid - 1) // mid for pile in piles)
+        ## pile + mid - 1 ensures that the division rounds up, which is equivalent to math.ceil(pile / mid).
+        ## The list comprehension iterates over each pile in piles and calculates the number of hours needed to eat that pile at the current eating speed mid.
+        ## sum(...) adds up the hours for all piles to get the total number of hours needed.
+        ## This total is then used to determine if the current eating speed mid allows Koko to eat all the bananas within the given hours h.            
+        if total_hours > h:
+            l = mid + 1
+        else:
+            r = mid - 1
+            
+    return l
 
 assert minEatingSpeed([3,6,7,11], 8) == 4
 assert minEatingSpeed([30,11,23,4,20], 5) == 30
