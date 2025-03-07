@@ -28,14 +28,40 @@ nums is sorted in non-decreasing order.
 '''
 
 def removeDuplicates(nums) -> int:        
-    k = 0
+    # Modify sorted array in place
+    # Pointers: one to iterate through array starting at index 1, and 
+    # second pointer (curr / k) to track the position of the next valid element.
+    # Set k pointer at 1.
+    # Initialize count variable to track how many times the curr / k elem has been encountered.
+    # Compare nums[i] to nums[i-1]
+        # If they're not equal:
+            # Reset count to 0.
+            # Replace with valid elem at position k --> nums[k] = nums[i]
+            # shift k to right
+        # Otherwise, if they are equal:
+            # count += 1
+            # Once the count gets to 2+, we don't want the position of k moving yet.
+            # We want k to stay until we get to a new nums[i] to replace with.
+            # If count is less than 2,
+                # replace with valid elem --> nums[k] = nums[i]
+                # shift k to right
+    
+    ## O(n) time, O(1) space solution ##
+
+    k = 1
+    count = 0
 
     for i in range(1, len(nums)):
-        if nums[k] != nums[i]:
-            nums[k + 1] = nums[i]
+        if nums[i] != nums[i - 1]:
+            count = 0
+            nums[k] = nums[i]
             k += 1
-    
-    return k + 1
+        else: 
+            count += 1 
+            if count < 2: 
+                nums[k] = nums[i]
+                k += 1
+    return k
 
 print(removeDuplicates([1,1,2])) # Output: 2
 print(removeDuplicates([0,0,1,1,1,2,2,3,3,4])) # Output: 5
