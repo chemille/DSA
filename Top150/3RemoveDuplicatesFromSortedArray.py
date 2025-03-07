@@ -63,5 +63,7 @@ def removeDuplicates(nums) -> int:
                 k += 1
     return k
 
-print(removeDuplicates([1,1,2])) # Output: 2
-print(removeDuplicates([0,0,1,1,1,2,2,3,3,4])) # Output: 5
+print(removeDuplicates([1,1,1,2,2,3])) # Output: 5, nums = [1,1,2,2,3]
+print(removeDuplicates([0,0,1,1,1,2,2,3,3])) # Output: 7, nums = [0,0,1,1,2,2,3]
+print(removeDuplicates([1,1,2])) # Output 3, nums = [1,1,2]
+
