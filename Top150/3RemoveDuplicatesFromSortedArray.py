@@ -63,6 +63,19 @@ def removeDuplicates(nums) -> int:
                 k += 1
     return k
 
+    ## Neetcode solution ##
+    # l, r = 0, 0 
+    # while r < len(nums):
+    #     count = 1
+    #     while r+1 < len(nums) and nums[r] == nums[r+1]:
+    #         r += 1
+    #         count +=1
+    #     for i in range(min(2,count)):
+    #         nums[l] = nums[r]
+    #         l += 1
+    #     r += 1
+    # return l
+
 print(removeDuplicates([1,1,1,2,2,3])) # Output: 5, nums = [1,1,2,2,3]
 print(removeDuplicates([0,0,1,1,1,2,2,3,3])) # Output: 7, nums = [0,0,1,1,2,2,3]
 print(removeDuplicates([1,1,2])) # Output 3, nums = [1,1,2]
